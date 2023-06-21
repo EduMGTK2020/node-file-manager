@@ -1,0 +1,24 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Implementation File Manager using Node.js APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduMGTK2020/node-file-manager.git"
+  },
+  "keywords": [
+    "cli",
+    "file-menager",
+    "nodejs"
+  ],
+  "author": "Eduard Nebolsin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EduMGTK2020/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/EduMGTK2020/node-file-manager#readme"
+}
