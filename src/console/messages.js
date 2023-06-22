@@ -8,6 +8,9 @@ const colors = {
 const showInfo = (infoMessage) =>
   console.log(colors.default + colors.bold + infoMessage + colors.default);
 
+const showError = (errorMessage) =>
+  console.log(colors.default + colors.error + errorMessage + colors.default);
+
 const startPrompt = () => colors.user;
 const endPrompt = () => colors.default;
 
@@ -34,4 +37,4 @@ const showAgenda = () => {
   );
 };
 
-export default { showInfo, startPrompt, endPrompt, showAgenda };
+export default { showInfo, startPrompt, endPrompt, showAgenda, showError };
