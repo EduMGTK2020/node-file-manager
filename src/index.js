@@ -18,15 +18,14 @@ const commandLine = readline.createInterface({
 messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
 commandLine.on('line', (inputLine) => {
   try {
-    const resultParse = parseInputLine(inputLine);
-    handleCommand(resultParse);
+    handleCommand(parseInputLine(inputLine));
   } catch (err) {
     messages.showError(err.message);
   }
   messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
 });
 
-commandLine.on('close', () => {
+process.on('exit', () => {
   messages.showInfo(
     `\nThank you for using File Manager, ${envParam.userName}, goodbye!\n`
   );

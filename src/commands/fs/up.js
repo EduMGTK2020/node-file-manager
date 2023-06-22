@@ -2,7 +2,7 @@ import path from 'path';
 import envParam from '../../utils/getEnv.js';
 
 export const Up = {
-  name: 'up',
+  name: 'Up',
   description: 'Go upper from current directory',
   usage: 'up',
   perform: (args) => {
@@ -10,6 +10,5 @@ export const Up = {
     if (parentDir != envParam.userWorkDir) {
       envParam.userWorkDir = parentDir;
     }
-    return true;
   },
 };

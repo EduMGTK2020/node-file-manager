@@ -1,7 +1,10 @@
+import { Exit } from './exit.js';
+
 import { Up } from './fs/up.js';
 
 const listCommands = {
   up: Up,
+  '.exit': Exit,
 };
 
 const handleCommand = (action) => {
