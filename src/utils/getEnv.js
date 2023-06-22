@@ -1,7 +1,13 @@
 import process from 'process';
 
-const getStartUserName = () => {
-  return 'Ed' || '<Anonimus>';
+const envParameter = {
+  userName: '<Anonimus>',
 };
 
-export default { getStartUserName };
+process.argv.map((arg) => {
+  if (arg.startsWith('--username')) {
+    envParameter.userName = arg.split('=')[1].trim();
+  }
+});
+
+export default envParameter;

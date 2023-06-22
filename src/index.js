@@ -4,9 +4,7 @@ import process from 'process';
 import messages from './console/messages.js';
 import envParam from './utils/getEnv.js';
 
-const startUserName = envParam.getStartUserName();
-
-messages.showInfo(`Welcome to the File Manager, ${startUserName}!`);
+messages.showInfo(`Welcome to the File Manager, ${envParam.userName}!`);
 messages.showAgenda();
 
 const commandLine = readline.createInterface({
@@ -22,6 +20,6 @@ commandLine.on('line', (inputLine) => {
 
 commandLine.on('close', () => {
   messages.showInfo(
-    `\nThank you for using File Manager, ${startUserName}, goodbye!\n`
+    `\nThank you for using File Manager, ${envParam.userName}, goodbye!\n`
   );
 });
