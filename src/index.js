@@ -13,15 +13,15 @@ const commandLine = readline.createInterface({
   output: process.stdout,
 });
 
-console.log(messages.startPrompt());
+messages.startUserPrompt(`\nYou are currently in ${envParam.userHomeDir}`);
 commandLine.on('line', (inputLine) => {
   try {
     const resultParse = parseInputLine(inputLine);
-    console.log(resultParse);
+    // console.log(resultParse);
   } catch (err) {
     messages.showError(err.message);
   }
-  console.log(messages.startPrompt());
+  messages.startUserPrompt(`\nYou are currently in ${envParam.userHomeDir}`);
 });
 
 commandLine.on('close', () => {

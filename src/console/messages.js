@@ -11,7 +11,9 @@ const showInfo = (infoMessage) =>
 const showError = (errorMessage) =>
   console.log(colors.default + colors.error + errorMessage + colors.default);
 
-const startPrompt = () => colors.user;
+const startUserPrompt = (promptMessage) =>
+  console.log(colors.default + colors.bold + promptMessage + colors.user);
+  
 const endPrompt = () => colors.default;
 
 const showAgenda = () => {
@@ -37,4 +39,4 @@ const showAgenda = () => {
   );
 };
 
-export default { showInfo, startPrompt, endPrompt, showAgenda, showError };
+export default { showInfo, startUserPrompt, endPrompt, showAgenda, showError };

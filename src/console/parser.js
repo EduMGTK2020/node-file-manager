@@ -2,7 +2,7 @@ const parseInputLine = (inputLine) => {
   const tmpString = inputLine.trim();
 
   if (tmpString == '') {
-    throw new Error('parser:empty');
+    throw new Error('Invalid input Operation failed - parser:empty');
   }
 
   const firstSpacePosition = tmpString.indexOf(' ');

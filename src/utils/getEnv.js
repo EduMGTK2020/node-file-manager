@@ -1,7 +1,9 @@
 import process from 'process';
+import os from 'os';
 
 const envParameter = {
   userName: '<Anonimus>',
+  userHomeDir: os.homedir(),
 };
 
 process.argv.map((arg) => {
