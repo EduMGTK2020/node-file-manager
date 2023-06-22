@@ -12,8 +12,8 @@ const showError = (errorMessage) =>
   console.log(colors.default + colors.error + errorMessage + colors.default);
 
 const startUserPrompt = (promptMessage) =>
-  console.log(colors.default + colors.bold + promptMessage + colors.user);
-  
+  console.log(colors.system + promptMessage + colors.user);
+
 const endPrompt = () => colors.default;
 
 const showAgenda = () => {

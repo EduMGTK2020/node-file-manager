@@ -3,7 +3,7 @@ import os from 'os';
 
 const envParameter = {
   userName: '<Anonimus>',
-  userHomeDir: os.homedir(),
+  userWorkDir: os.homedir(),
 };
 
 process.argv.map((arg) => {

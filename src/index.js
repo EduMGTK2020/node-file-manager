@@ -5,6 +5,8 @@ import messages from './console/messages.js';
 import envParam from './utils/getEnv.js';
 import parseInputLine from './console/parser.js';
 
+import handleCommand from './commands/index.js';
+
 messages.showInfo(`Welcome to the File Manager, ${envParam.userName}!`);
 messages.showAgenda();
 
@@ -13,15 +15,15 @@ const commandLine = readline.createInterface({
   output: process.stdout,
 });
 
-messages.startUserPrompt(`\nYou are currently in ${envParam.userHomeDir}`);
+messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
 commandLine.on('line', (inputLine) => {
   try {
     const resultParse = parseInputLine(inputLine);
-    // console.log(resultParse);
+    handleCommand(resultParse);
   } catch (err) {
     messages.showError(err.message);
   }
-  messages.startUserPrompt(`\nYou are currently in ${envParam.userHomeDir}`);
+  messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
 });
 
 commandLine.on('close', () => {
