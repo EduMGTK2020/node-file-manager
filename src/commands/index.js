@@ -4,6 +4,7 @@ import { Up } from './fs/up.js';
 import { Cd } from './fs/cd.js';
 import { Ls } from './fs/ls.js';
 import { Cat } from './fs/cat.js';
+import { Add } from './fs/add.js';
 
 const listCommands = {
   '.exit': Exit,
@@ -11,6 +12,7 @@ const listCommands = {
   cd: Cd,
   ls: Ls,
   cat: Cat,
+  add: Add,
 };
 
 const handleCommand = async (action) => {
