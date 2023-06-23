@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import env from '../../utils/getEnv.js';
 import getAbsPath from '../../utils/getAbsPath.js';
 import getStats from '../../utils/getStats.js';
