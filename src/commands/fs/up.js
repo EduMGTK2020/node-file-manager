@@ -1,14 +1,14 @@
 import path from 'path';
-import envParam from '../../utils/getEnv.js';
+import env from '../../utils/getEnv.js';
 
 export const Up = {
   name: 'Up',
   description: 'Go upper from current directory',
   usage: 'up',
-  perform: (args) => {
-    const parentDir = path.dirname(envParam.userWorkDir);
-    if (parentDir != envParam.userWorkDir) {
-      envParam.userWorkDir = parentDir;
+  perform: async (args) => {
+    const parentDir = path.dirname(env.Parameters.userWorkDir);
+    if (parentDir != env.Parameters.userWorkDir) {
+      env.setUserWorkDir(parentDir);
     }
   },
 };

@@ -2,12 +2,12 @@ import readline from 'readline';
 import process from 'process';
 
 import messages from './console/messages.js';
-import envParam from './utils/getEnv.js';
+import env from './utils/getEnv.js';
 import parseInputLine from './console/parser.js';
 
 import handleCommand from './commands/index.js';
 
-messages.showInfo(`Welcome to the File Manager, ${envParam.userName}!`);
+messages.showInfo(`Welcome to the File Manager, ${env.Parameters.userName}!`);
 messages.showAgenda();
 
 const commandLine = readline.createInterface({
@@ -15,18 +15,18 @@ const commandLine = readline.createInterface({
   output: process.stdout,
 });
 
-messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
-commandLine.on('line', (inputLine) => {
+messages.startUserPrompt(`\nYou are currently in ${env.Parameters.userWorkDir}`);
+commandLine.on('line', async (inputLine) => {
   try {
-    handleCommand(parseInputLine(inputLine));
+    await handleCommand(parseInputLine(inputLine));
   } catch (err) {
     messages.showError(err.message);
   }
-  messages.startUserPrompt(`\nYou are currently in ${envParam.userWorkDir}`);
+  messages.startUserPrompt(`\nYou are currently in ${env.getUserWorkDir()}`);
 });
 
 process.on('exit', () => {
   messages.showInfo(
-    `\nThank you for using File Manager, ${envParam.userName}, goodbye!\n`
+    `\nThank you for using File Manager, ${env.Parameters.userName}, goodbye!\n`
   );
 });

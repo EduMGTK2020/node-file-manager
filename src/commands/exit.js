@@ -6,7 +6,7 @@ export const Exit = {
   name: 'Exit',
   description: 'Exiting the program',
   usage: '.exit',
-  perform: (args) => {
+  perform: async (args) => {
     process.exit(0);
   },
 };
