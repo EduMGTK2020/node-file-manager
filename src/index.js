@@ -15,14 +15,14 @@ const commandLine = readline.createInterface({
   output: process.stdout,
 });
 
-messages.startUserPrompt(`\nYou are currently in ${env.Parameters.userWorkDir}`);
+messages.showSystemInfo(`\nYou are currently in ${env.Parameters.userWorkDir}`);
 commandLine.on('line', async (inputLine) => {
   try {
     await handleCommand(parseInputLine(inputLine));
   } catch (err) {
     messages.showError(err.message);
   }
-  messages.startUserPrompt(`\nYou are currently in ${env.getUserWorkDir()}`);
+  messages.showSystemInfo(`\nYou are currently in ${env.getUserWorkDir()}`);
 });
 
 process.on('exit', () => {

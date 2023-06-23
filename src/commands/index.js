@@ -2,11 +2,13 @@ import { Exit } from './exit.js';
 
 import { Up } from './fs/up.js';
 import { Cd } from './fs/cd.js';
+import { Ls } from './fs/ls.js';
 
 const listCommands = {
   '.exit': Exit,
   up: Up,
   cd: Cd,
+  ls: Ls,
 };
 
 const handleCommand = async (action) => {
@@ -15,7 +17,7 @@ const handleCommand = async (action) => {
 
   try {
     await listCommands[command].perform(args);
-  } catch(err) {
+  } catch (err) {
     throw new Error(err.message);
   }
 };

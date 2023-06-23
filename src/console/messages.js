@@ -11,10 +11,13 @@ const showInfo = (infoMessage) =>
 const showError = (errorMessage) =>
   console.log(colors.default + colors.error + errorMessage + colors.default);
 
-const startUserPrompt = (promptMessage) =>
+const showSystemInfo = (promptMessage) =>
   console.log(colors.system + promptMessage + colors.user);
 
-const endPrompt = () => colors.default;
+const showTable = (table) => {
+  console.log(colors.default);
+  console.table(table);
+};
 
 const showAgenda = () => {
   showInfo(
@@ -39,4 +42,10 @@ const showAgenda = () => {
   );
 };
 
-export default { showInfo, startUserPrompt, endPrompt, showAgenda, showError };
+export default {
+  showInfo,
+  showAgenda,
+  showError,
+  showTable,
+  showSystemInfo,
+};
