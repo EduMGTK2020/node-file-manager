@@ -14,6 +14,8 @@ export const Cd = {
     }
     if (stats.info.isDirectory()) {
       env.setUserWorkDir(newDir);
+    } else {
+      throw new Error('it is not directory');
     }
   },
 };

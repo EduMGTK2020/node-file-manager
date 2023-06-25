@@ -13,18 +13,22 @@ export const Ls = {
         withFileTypes: true,
       });
 
-      const listToView = listFiles.map((item) => {
-        return {
-          Name: item.name,
-          Type: item.isFile() ? 'file' : 'directory',
-        };
-      });
+      const listToView = listFiles
+        .filter((item) => {
+          return item.isFile() || item.isDirectory();
+        })
+        .map((item) => {
+          return {
+            Name: item.name,
+            Type: item.isFile() ? 'file' : 'directory',
+          };
+        });
 
       if (listToView.length) {
         const byTypeAndName = (a, b) => {
           if (a.Type > b.Type) return 1;
           if (a.Type < b.Type) return -1;
-          if (a.Name > b.Name) return 1;
+          if (a.Name.toLowerCase() > b.Name.toLowerCase()) return 1;
           return -1;
         };
         listToView.sort(byTypeAndName);
