@@ -9,6 +9,9 @@ import { Rn } from './fs/rn.js';
 import { Cp } from './fs/cp.js';
 import { Mv } from './fs/mv.js';
 import { Rm } from './fs/rm.js';
+import { Hash } from './fs/hash.js';
+
+import { Os } from './os.js';
 
 const listCommands = {
   '.exit': Exit,
@@ -21,6 +24,8 @@ const listCommands = {
   cp: Cp,
   mv: Mv,
   rm: Rm,
+  os: Os,
+  hash: Hash,
 };
 
 const handleCommand = async (action) => {
