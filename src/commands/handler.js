@@ -13,9 +13,11 @@ import { decompress } from './fs/decompress.js';
 import { exit } from './systems/exit.js';
 import { Os } from './systems/os.js';
 import { hash } from './systems/hash.js';
+import { help } from './systems/help.js';
 
 const listCommands = {
   '.exit': exit,
+  '.help': help,
   up,
   cd,
   ls,
@@ -30,6 +32,15 @@ const listCommands = {
   compress,
   decompress,
 };
+
+const infoTable = [];
+Object.values(listCommands).forEach((command) => {
+  infoTable.push({
+    name: command.name,
+    description: command.description,
+    usage: command.usage,
+  });
+});
 
 const handleCommand = async (action) => {
   const command = action.command;
@@ -55,4 +66,4 @@ const handleCommand = async (action) => {
   }
 };
 
-export default handleCommand;
+export default { handleCommand, infoTable };

@@ -3,7 +3,7 @@ import { envParameters } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
 export const ls = {
-  name: 'ls',
+  name: 'Ls',
   description:
     'Print in console list of all files and folders in current directory',
   usage: 'ls',

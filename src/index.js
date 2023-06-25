@@ -3,7 +3,7 @@ import process from 'process';
 
 import messages from './console/messages.js';
 import parseInputLine from './console/parser.js';
-import handleCommand from './commands/handler.js';
+import commands from './commands/handler.js';
 import { envParameters } from './utils/shared.js';
 
 const commandLine = readline.createInterface({
@@ -20,7 +20,7 @@ messages.showPrompt(
 
 commandLine.on('line', async (inputLine) => {
   try {
-    await handleCommand(parseInputLine(inputLine));
+    await commands.handleCommand(parseInputLine(inputLine));
   } catch (err) {
     messages.showError(err.message);
   }
