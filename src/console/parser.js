@@ -12,14 +12,37 @@ const parseInputLine = (inputLine) => {
       args: [],
     };
   } else {
+    let countQuote = 0;
+
+    const args = tmpString
+      .slice(firstSpacePosition)
+      .split('')
+      .map((s) => {
+        if (s == "'") {
+          if (countQuote == 0) {
+            countQuote++;
+            return '';
+          }
+          countQuote--;
+          return '';
+        }
+        if (s == ' ') {
+          if (countQuote == 1) {
+            return '*';
+          }
+        }
+        return s;
+      })
+      .join('')
+      .split(' ')
+      .map((item) => {
+        return item.replaceAll('*', ' ');
+      })
+      .filter((item) => item !== '');
+
     return {
       command: tmpString.slice(0, firstSpacePosition).trim().toLowerCase(),
-      args: tmpString
-        .slice(firstSpacePosition)
-        .trim()
-        .split(' ')
-        .map((item) => item.trim())
-        .filter((item) => item !== ''),
+      args: args,
     };
   }
 };

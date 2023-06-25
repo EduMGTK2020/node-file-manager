@@ -7,12 +7,12 @@ import { rn } from './fs/rn.js';
 import { cp } from './fs/cp.js';
 import { mv } from './fs/mv.js';
 import { rm } from './fs/rm.js';
+import { hash } from './fs/hash.js';
 import { compress } from './fs/compress.js';
 import { decompress } from './fs/decompress.js';
 
 import { exit } from './systems/exit.js';
 import { Os } from './systems/os.js';
-import { hash } from './systems/hash.js';
 import { help } from './systems/help.js';
 
 const listCommands = {
