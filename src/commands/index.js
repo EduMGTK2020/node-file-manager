@@ -8,6 +8,7 @@ import { Add } from './fs/add.js';
 import { Rn } from './fs/rn.js';
 import { Cp } from './fs/cp.js';
 import { Mv } from './fs/mv.js';
+import { Rm } from './fs/rm.js';
 
 const listCommands = {
   '.exit': Exit,
@@ -19,6 +20,7 @@ const listCommands = {
   rn: Rn,
   cp: Cp,
   mv: Mv,
+  rm: Rm,
 };
 
 const handleCommand = async (action) => {
