@@ -9,7 +9,10 @@ import { Rn } from './fs/rn.js';
 import { Cp } from './fs/cp.js';
 import { Mv } from './fs/mv.js';
 import { Rm } from './fs/rm.js';
+
 import { Hash } from './fs/hash.js';
+import { Compress } from './fs/compress.js';
+import { Decompress } from './fs/decompress.js';
 
 import { Os } from './os.js';
 
@@ -26,6 +29,8 @@ const listCommands = {
   rm: Rm,
   os: Os,
   hash: Hash,
+  compress: Compress,
+  decompress: Decompress,
 };
 
 const handleCommand = async (action) => {
