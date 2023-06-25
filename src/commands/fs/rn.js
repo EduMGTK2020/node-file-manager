@@ -27,6 +27,7 @@ export const Rn = {
 
     try {
       await renameFile(fileOldPath, fileNewPath);
+      message.showSystemInfo('File successfully renamed');
     } catch (err) {
       throw new Error('Operation failed : ' + err.message);
     }
