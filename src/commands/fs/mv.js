@@ -41,7 +41,7 @@ export const mv = {
 
       message.showSystemInfo('File successfully movied');
     } catch (err) {
-      throw new Error('Operation failed : ' + err.message);
+      throw new Error('Operation failed: ' + err.message);
     }
   },
 };

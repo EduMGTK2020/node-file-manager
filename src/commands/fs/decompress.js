@@ -36,7 +36,7 @@ export const decompress = {
       await pipeline(readStream, createBrotliDecompress(), writeStream);
       message.showSystemInfo('File successfully decompressed');
     } catch (err) {
-      throw new Error('Operation failed : ' + err.message);
+      throw new Error('Operation failed: ' + err.message);
     }
   },
 };
