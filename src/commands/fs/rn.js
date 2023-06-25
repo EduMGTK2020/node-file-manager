@@ -1,26 +1,25 @@
-import { rename as renameFile } from 'fs/promises';
 import path from 'path';
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
+import { rename as renameFile } from 'fs/promises';
+import { fsGetStats, fsGetAbsPath } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
-export const Rn = {
+export const rn = {
   name: 'Rn',
   description: 'Rename file',
   usage: 'rn path_to_file new_filename',
   perform: async (args) => {
-    if (args.length != 2) {
-      throw new Error('Invalid input: command must have two arguments');
-    }
-
-    const fileOldPath = getAbsPath(args[0]);
+    const fileOldPath = fsGetAbsPath(args[0]);
     const fileNewPath = path.resolve(path.dirname(fileOldPath), args[1]);
 
-    const statsOld = await getStats(fileOldPath);
+    if(path.dirname(fileOldPath) != path.dirname(fileNewPath)) {
+      throw new Error('Operation failed: files will be in different directories, to move use MV command');
+    }
+    
+    const statsOld = await fsGetStats(fileOldPath);
     if (statsOld.err) {
       throw new Error('Operation failed: file not found');
     }
-    const statsNew = await getStats(fileNewPath);
+    const statsNew = await fsGetStats(fileNewPath);
     if (!statsNew.err) {
       throw new Error('Operation failed: file already exists');
     }
@@ -29,7 +28,7 @@ export const Rn = {
       await renameFile(fileOldPath, fileNewPath);
       message.showSystemInfo('File successfully renamed');
     } catch (err) {
-      throw new Error('Operation failed : ' + err.message);
+      throw new Error('Operation failed: ' + err.message);
     }
   },
 };

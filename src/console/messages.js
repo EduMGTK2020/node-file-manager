@@ -42,10 +42,17 @@ const showAgenda = () => {
   );
 };
 
+const showPrompt = (readline, promptText) => {
+  showSystemInfo(promptText);
+  readline.setPrompt(colors.system + '=> ' + colors.user);
+  readline.prompt();
+};
+
 export default {
   showInfo,
   showAgenda,
   showError,
   showTable,
   showSystemInfo,
+  showPrompt,
 };

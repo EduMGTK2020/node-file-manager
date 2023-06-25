@@ -1,10 +1,10 @@
 import os from 'os';
-import message from '../console/messages.js';
+import message from '../../console/messages.js';
 
 export const Os = {
   name: 'Os',
   description: 'Operating system info',
-  usage: 'os [--EOL | --cpus | --homedir | --username | --architecture]',
+  usage: 'os [--EOL|--cpus|--homedir|--username|--architecture]',
   perform: async (args) => {
     const param = args[0];
     let output = '';

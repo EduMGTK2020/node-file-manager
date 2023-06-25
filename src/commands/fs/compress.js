@@ -1,20 +1,18 @@
 import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'stream/promises';
 import { createBrotliCompress } from 'zlib';
-
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
+import { fsGetStats, fsGetAbsPath } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
-export const Compress = {
+export const compress = {
   name: 'Compress',
   description: 'Compress file (used Brotli algorithm)',
   usage: 'compress path_to_file path_to_destination',
   perform: async (args) => {
-    const fileToCompessPath = getAbsPath(args[0]);
-    const fileArchivePath = getAbsPath(args[1]);
+    const fileToCompessPath = fsGetAbsPath(args[0]);
+    const fileArchivePath = fsGetAbsPath(args[1]);
 
-    const stats = await getStats(fileToCompessPath);
+    const stats = await fsGetStats(fileToCompessPath);
     if (stats.err) {
       throw new Error('Operation failed: file not found');
     }
@@ -22,7 +20,7 @@ export const Compress = {
       throw new Error('Operation failed: ' + fileToCompessPath + ' not a file');
     }
 
-    const statsTo = await getStats(fileArchivePath);
+    const statsTo = await fsGetStats(fileArchivePath);
     if (!statsTo.err) {
       if (statsTo.info.isDirectory()) {
         throw new Error(

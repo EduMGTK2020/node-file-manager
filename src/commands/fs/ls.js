@@ -1,15 +1,15 @@
 import { readdir } from 'fs/promises';
-import env from '../../utils/getEnv.js';
+import { envParameters } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
-export const Ls = {
+export const ls = {
   name: 'ls',
   description:
     'Print in console list of all files and folders in current directory',
   usage: 'ls',
   perform: async (args) => {
     try {
-      const listFiles = await readdir(env.Parameters.userWorkDir, {
+      const listFiles = await readdir(envParameters.userWorkDir, {
         withFileTypes: true,
       });
 

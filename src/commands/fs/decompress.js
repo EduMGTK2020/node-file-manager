@@ -1,20 +1,18 @@
 import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'stream/promises';
 import { createBrotliDecompress } from 'zlib';
-
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
+import { fsGetStats, fsGetAbsPath } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
-export const Decompress = {
+export const decompress = {
   name: 'Decompress',
   description: 'Decompress  file (used Brotli algorithm)',
   usage: 'decompress path_to_file path_to_destination',
   perform: async (args) => {
-    const fileArchivePath = getAbsPath(args[0]);
-    const fileToDecompessPath = getAbsPath(args[1]);
+    const fileArchivePath = fsGetAbsPath(args[0]);
+    const fileToDecompessPath = fsGetAbsPath(args[1]);
 
-    const stats = await getStats(fileArchivePath);
+    const stats = await fsGetStats(fileArchivePath);
     if (stats.err) {
       throw new Error('Operation failed: file not found');
     }
@@ -22,7 +20,7 @@ export const Decompress = {
       throw new Error('Operation failed: ' + fileArchivePath + ' not a file');
     }
 
-    const statsTo = await getStats(fileToDecompessPath);
+    const statsTo = await fsGetStats(fileToDecompessPath);
     if (!statsTo.err) {
       if (statsTo.info.isDirectory()) {
         throw new Error(

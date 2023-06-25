@@ -1,21 +1,19 @@
-import env from '../../utils/getEnv.js';
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
+import { fsGetStats, fsGetAbsPath, envParameters } from '../../utils/shared.js';
 
-export const Cd = {
+export const cd = {
   name: 'Cd',
   description: 'Go to dedicated folder from current directory',
   usage: 'cd path_to_directory',
   perform: async (args) => {
-    const newDir = getAbsPath(args[0]);
-    const stats = await getStats(newDir);
+    const newDir = fsGetAbsPath(args[0]);
+    const stats = await fsGetStats(newDir);
     if (stats.err) {
-      throw new Error(stats.err.message);
+      throw new Error('Operation failed: ' + stats.err.message);
     }
     if (stats.info.isDirectory()) {
-      env.setUserWorkDir(newDir);
+      envParameters.userWorkDir = newDir;
     } else {
-      throw new Error('it is not directory');
+      throw new Error('Operation failed: path is not directory');
     }
   },
 };

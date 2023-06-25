@@ -1,18 +1,16 @@
 import { readFile } from 'fs/promises';
 import { createHash } from 'crypto';
-
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
+import { fsGetStats, fsGetAbsPath } from '../../utils/shared.js';
 import message from '../../console/messages.js';
 
-export const Hash = {
+export const hash = {
   name: 'Hash',
   description: 'Calculate hash for file',
   usage: 'hash path_to_file',
   perform: async (args) => {
-    const filePath = getAbsPath(args[0]);
+    const filePath = fsGetAbsPath(args[0]);
 
-    const stats = await getStats(filePath);
+    const stats = await fsGetStats(filePath);
     if (stats.err) {
       throw new Error('Operation failed: file not found');
     }

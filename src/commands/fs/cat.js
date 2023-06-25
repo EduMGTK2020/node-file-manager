@@ -1,16 +1,15 @@
-import getAbsPath from '../../utils/getAbsPath.js';
-import getStats from '../../utils/getStats.js';
-import message from '../../console/messages.js';
 import { createReadStream } from 'fs';
+import { fsGetStats, fsGetAbsPath } from '../../utils/shared.js';
+import message from '../../console/messages.js';
 
-export const Cat = {
+export const cat = {
   name: 'Cat',
   description: "Read file and print it's content",
   usage: 'cat path_to_file',
   perform: async (args) => {
-    const filePath = getAbsPath(args[0]);
+    const filePath = fsGetAbsPath(args[0]);
 
-    const stats = await getStats(filePath);
+    const stats = await fsGetStats(filePath);
     if (stats.err) {
       throw new Error('Operation failed: file not found');
     }
@@ -24,7 +23,7 @@ export const Cat = {
       const fileData = Buffer.concat(chunks).toString('utf-8');
       message.showSystemInfo(fileData);
     } catch (err) {
-      throw new Error('FS operation failed: ' + err.message);
+      throw new Error('Operation failed: ' + err.message);
     }
   },
 };
